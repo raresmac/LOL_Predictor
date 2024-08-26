@@ -1,0 +1,5 @@
+mwrogue==0.1.5
+numpy==2.1.0
+scikit_learn==1.5.1
+tensorflow==2.17.0
+tensorflow_intel==2.17.0
