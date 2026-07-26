@@ -1,8 +1,14 @@
-import json
+"""
+Legacy compatibility wrapper for retrieving match datasets.
+"""
 
-def get_db(championRole='withRole'):
-    with open(championRole + '.txt', 'r') as filehandle:
-        json_map = json.load(filehandle)
-    X = [a["X"] for a in json_map]
-    y = [a["y"] for a in json_map]
-    return X, y
+from dataset_manager import DatasetManager
+from data_fetcher import EsportsDataFetcher
+from preprocessor import MatchPreprocessor
+
+_manager = DatasetManager(MatchPreprocessor(EsportsDataFetcher()))
+
+
+def get_db(championRole: str = "withRole"):
+    """Loads feature matrix X and target y using DatasetManager."""
+    return _manager.load_dataset(championRole)
